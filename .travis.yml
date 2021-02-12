@@ -16,6 +16,14 @@ install:
   - pip install codacy-coverage
 script:
   - cd decide
-  - coverage run --branch --source=. ./manage.py test --keepdb --with-xunit
-  - coverage xml
-  - python-codacy-coverage -r coverage.xml
+deploy:
+    provider: heroku
+    app: egc-adrrolroj-febrero-travis
+    strategy: git
+    apikey: a79e7295-4a97-4675-9021-950f8372bd24
+notifications:
+  email:
+    recipients:
+      - adrrolroj@alum.us.es
+    on_success: always
+    on_failure: always
